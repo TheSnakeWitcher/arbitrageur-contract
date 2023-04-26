@@ -1,6 +1,73 @@
 [profile.default]
-src = 'src'
-out = 'out'
-libs = ['lib']
+offline = true # if enable foundry will not attempt to download missed dependencies
+out = "out"
+src = "src"
+test = "test"
+libs = ["lib"]
+# libraries = ["",""] # An array of libraries to link against in the following format
+# evm_version = "london" # EVM version to use during tests, must be a hardfork name(london, byzantium, etc)
+solc = "/bin/solc"
+auto_detect_solc = true # ignored if solc_version is seted
+ffi = false # true to allow run external code
+optimizer = true
+optimizer_runs = 10_000
+# via_ir = true
+bytecode_hash = "none"
+gas_reports = ["*"]
+# gas_reports_ignore = ["contract_to_ignore_gas_report"]
+fuzz = { runs = 256 }
+verbosity = 3 # 3 produce traces for failed test & 4 for all tests
+remappings = [
+  "@std=lib/forge-std/src/",
+  "@openzeppelin=lib/openzeppelin-contracts",
+  "@prb=lib/prb-test/src",
+  "@dstest=lib/ds-test/src/",
+  "forge-std/=lib/forge-std/src/",
+]
+# auto_detect_remappings
+# sender=""
 
-# See more config options https://github.com/foundry-rs/foundry/tree/master/config
+etherscan_api_key = "${ETHERSCAN_API_KEY}"
+[etherscan]
+btc = { url = "${BTC_URL}" , key = "${BTC_KEY}" } # chain = ""}
+tbtc = { url = "${TBTC_URL}" , key = "${TBTC_KEY}" }
+ethereum = { url = "${ETHEREUM_URL}" , key = "${ETHEREUM_KEY}" }
+goerli = { url = "${GOERLI_URL}" , key = "${GOERLI_KEY}" }
+polygon = { url = "${POLYGON_URL}" , key = "${POLYGON_KEY}" }
+mumbai = { url = "${MUMBAI_URL}" , key = "${MUMBAI_KEY}" }
+# mumbai = { url = "${UMBRIA_MUMBAI_URL}" , key = "${UMBRIA_MUMBAI_KEY}" }
+avalanche = { url = "${AVALANCHE_URL}" , key = "${AVALANCHE_KEY}" }
+fuji = { url = "${FUJI_URL}" , key = "${FUJI_KEY}" }
+bsc = { url = "${BSC_URL}" , key = "${BSC_KEY}" }
+bsct = { url = "${BSCT_URL}" , key = "${BSCT_KEY}" }
+
+# [rpc_storage_caching]
+[rpc_endpoints]
+local = "${LOCAL_URL}"
+#btc = { url = "${BTC_URL}" , key = "${BTC_KEY}" } # chain = ""}
+#tbtc = { url = "${TBTC_URL}" , key = "${TBTC_KEY}" }
+ethereum = "${ETHEREUM_URL}"
+goerli =  "${GOERLI_URL}"
+polygon = "${POLYGON_URL}"
+mumbai =  "${MUMBAI_URL}"
+# mumbai = "${UMBRIA_MUMBAI_URL}"
+avalanche =  "${AVALANCHE_URL}"
+fuji =  "${FUJI_URL}"
+bsc =  "${BSC_URL}"
+bsct = "${BSCT_URL}"
+
+#[profile.default.fmt] 
+#[profile.default.fuzz],
+#[profile.default.invariant] )
+
+
+[profile.ci.fuzz]
+runs = 10_000
+fuzz = { runs = 1_000 }
+
+# [profile.test]
+# src = "test"
+
+# [profile.local]
+# [profile.build]
+# [profile.hardhat]

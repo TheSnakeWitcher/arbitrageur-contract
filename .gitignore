@@ -1,6 +1,8 @@
 # Compiler files
 cache/
 out/
+util/
+data/
 
 # Ignores development broadcast logs
 !/broadcast
@@ -8,4 +10,4 @@ out/
 /broadcast/**/dry-run/
 
 # Dotenv file
-.env
+.envrc
